@@ -6,125 +6,104 @@
 <title>DARK STORE</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
 body {
-    background: #f5f5f5;
-    color: #111;
+    margin:0;
+    font-family: Arial;
+    background:#fff;
+    color:#111;
 }
 
 /* HEADER */
 header {
-    background: #000;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    background:#000;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    font-weight:bold;
 }
 
 /* BANNER */
 .banner {
-    background: linear-gradient(to right, #000, #0a58ff);
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
+    background: linear-gradient(135deg, #000, #0066ff);
+    color:white;
+    text-align:center;
+    padding:60px 20px;
 }
 
 .banner h1 {
-    font-size: 28px;
-}
-
-.banner p {
-    margin-top: 10px;
+    font-size:32px;
 }
 
 /* PRODUCTOS */
 .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:30px;
 }
 
 .card {
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    transition:0.3s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform:translateY(-8px);
 }
 
 .card img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.card h3 {
-    margin: 10px 0;
+    width:100%;
+    border-radius:10px;
 }
 
 .price {
-    color: #0a58ff;
-    font-weight: bold;
-    margin-bottom: 10px;
+    color:#0066ff;
+    font-weight:bold;
+    margin:10px 0;
 }
 
 /* BOTONES */
 .btn {
-    display: block;
-    margin: 5px auto;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 80%;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+    display:block;
+    width:100%;
+    margin:5px 0;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
 }
 
 .whatsapp {
-    background: #25D366;
-    color: white;
+    background:#25D366;
+    color:white;
 }
 
 .paypal {
-    background: #0070ba;
-    color: white;
+    background:#0070ba;
+    color:white;
 }
 
 .btn:hover {
-    opacity: 0.8;
+    transform:scale(1.05);
 }
 
 /* SECCIONES */
 .section {
-    padding: 40px 20px;
-    text-align: center;
+    padding:40px;
+    text-align:center;
 }
 
 footer {
-    background: #000;
-    color: white;
-    text-align: center;
-    padding: 15px;
-}
-
-/* RESPONSIVE */
-@media(max-width:600px){
-    .banner h1 {
-        font-size: 22px;
-    }
+    background:#000;
+    color:white;
+    text-align:center;
+    padding:20px;
 }
 </style>
 </head>
@@ -134,14 +113,14 @@ footer {
 <header>DARK STORE</header>
 
 <section class="banner">
-    <h1>Los mejores productos digitales</h1>
-    <p>Compra fácil, rápido y seguro</p>
+    <h1>Productos digitales premium</h1>
+    <p>Compra fácil y segura</p>
 </section>
 
 <section class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/300" alt="">
+<img src="https://via.placeholder.com/300">
 <h3>Fluorite iPhone</h3>
 <p class="price">$20</p>
 <a href="https://wa.link/1vvkkg"><button class="btn whatsapp">Comprar por WhatsApp</button></a>
@@ -149,7 +128,7 @@ footer {
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/300" alt="">
+<img src="https://via.placeholder.com/300">
 <h3>Drip Client Android</h3>
 <p class="price">$12</p>
 <a href="https://wa.link/1vvkkg"><button class="btn whatsapp">Comprar por WhatsApp</button></a>
@@ -157,9 +136,9 @@ footer {
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/300" alt="">
-<h3>Diamantes Free Fire</h3>
-<p class="price">$45</p>
+<img src="https://via.placeholder.com/300">
+<h3>BR Mod Android</h3>
+<p class="price">$12</p>
 <a href="https://wa.link/1vvkkg"><button class="btn whatsapp">Comprar por WhatsApp</button></a>
 <a href="https://www.paypal.me/Herreraalcantara265"><button class="btn paypal">Pagar con PayPal</button></a>
 </div>
@@ -168,16 +147,16 @@ footer {
 
 <section class="section">
 <h2>Sobre Nosotros</h2>
-<p>Somos una tienda digital confiable con productos de alta calidad.</p>
+<p>Somos una tienda digital confiable con productos premium.</p>
 </section>
 
 <section class="section">
 <h2>Contacto</h2>
-<p>Escríbenos por WhatsApp para más información.</p>
+<p>Contáctanos por WhatsApp para comprar.</p>
 </section>
 
 <footer>
-© 2026 DARK STORE
+© DARK STORE 2026
 </footer>
 
 </body>
