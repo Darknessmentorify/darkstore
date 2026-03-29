@@ -8,32 +8,32 @@
 <style>
 body{
     margin:0;
-    font-family: Arial;
+    font-family:Arial;
     background:#050510;
     color:white;
 }
 
 /* HEADER */
 header{
-    padding:20px;
     text-align:center;
-    font-size:24px;
+    padding:20px;
+    font-size:26px;
     color:#c77dff;
-    text-shadow:0 0 15px #c77dff;
+    text-shadow:0 0 20px #c77dff;
 }
 
 /* HERO */
 .hero{
     text-align:center;
-    padding:50px 20px;
+    padding:60px 20px;
 }
 
 .hero h1{
-    font-size:40px;
+    font-size:45px;
     background:linear-gradient(90deg,#c77dff,#00bfff);
     -webkit-background-clip:text;
     color:transparent;
-    text-shadow:0 0 25px #c77dff;
+    text-shadow:0 0 30px #c77dff;
 }
 
 /* PRODUCTOS */
@@ -47,34 +47,33 @@ header{
     background:#0a0a1a;
     border-radius:20px;
     padding:20px;
-    box-shadow:0 0 20px rgba(0,255,255,0.2);
+    box-shadow:0 0 30px rgba(0,255,255,0.2);
     transition:0.3s;
 }
 
 .card:hover{
-    transform:scale(1.02);
+    transform:scale(1.03);
+    box-shadow:0 0 40px #00bfff;
 }
 
 /* PRECIOS */
 .price-box{
     display:flex;
-    justify-content:space-between;
-    margin:10px 0;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 .price{
-    background:#111;
-    padding:10px;
-    border-radius:10px;
-    text-align:center;
     flex:1;
-    margin:5px;
+    padding:10px;
+    text-align:center;
+    background:#111;
+    border-radius:10px;
     box-shadow:0 0 10px #00bfff;
 }
 
 /* BOTONES */
 .btn{
-    display:block;
     width:100%;
     padding:15px;
     margin-top:10px;
@@ -86,24 +85,24 @@ header{
     transition:0.2s;
 }
 
-/* EFECTO GLOW */
+/* WHATSAPP */
 .whatsapp{
     background:linear-gradient(90deg,#00ff88,#00cc66);
-    box-shadow:0 0 20px #00ff88;
+    box-shadow:0 0 25px #00ff88;
 }
 
+/* PAYPAL */
 .paypal{
     background:linear-gradient(90deg,#0070ba,#00bfff);
-    box-shadow:0 0 20px #00bfff;
+    box-shadow:0 0 25px #00bfff;
 }
 
 /* EFECTO TOQUE */
 .btn:active{
-    transform:scale(0.92);
-    box-shadow:0 0 30px white;
+    transform:scale(0.9);
+    box-shadow:0 0 40px white;
 }
 
-/* TEXTO */
 h2{
     color:#c77dff;
 }
@@ -121,25 +120,21 @@ h2{
 
 <section class="products">
 
+<!-- PRODUCTO 1 -->
 <div class="card">
 <h2>Fluorite iPhone</h2>
 
 <div class="price-box">
-<div class="price">1 día<br>$5</div>
-<div class="price">7 días<br>$11</div>
-<div class="price">30 días<br>$20</div>
+<div class="price">1 día $5</div>
+<div class="price">7 días $11</div>
+<div class="price">30 días $20</div>
 </div>
 
-<a href="https://wa.link/1vvkkg">
-<button class="btn whatsapp">Comprar por WhatsApp</button>
-</a>
-
-<a href="https://www.paypal.me/Herreraalcantara265">
-<button class="btn paypal">Pagar con PayPal</button>
-</a>
-
+<button class="btn whatsapp" onclick="goWhatsApp()">Comprar por WhatsApp</button>
+<button class="btn paypal" onclick="goPayPal()">Pagar con PayPal</button>
 </div>
 
+<!-- PRODUCTO 2 -->
 <div class="card">
 <h2>Drip Client Android</h2>
 
@@ -150,16 +145,26 @@ h2{
 <div class="price">$12</div>
 </div>
 
-<a href="https://wa.link/1vvkkg">
-<button class="btn whatsapp">Comprar por WhatsApp</button>
-</a>
-
-<a href="https://www.paypal.me/Herreraalcantara265">
-<button class="btn paypal">Pagar con PayPal</button>
-</a>
-
+<button class="btn whatsapp" onclick="goWhatsApp()">Comprar por WhatsApp</button>
+<button class="btn paypal" onclick="goPayPal()">Pagar con PayPal</button>
 </div>
 
+<!-- PRODUCTO 3 -->
+<div class="card">
+<h2>BR Mod Android</h2>
+
+<div class="price-box">
+<div class="price">$1</div>
+<div class="price">$4</div>
+<div class="price">$8</div>
+<div class="price">$12</div>
+</div>
+
+<button class="btn whatsapp" onclick="goWhatsApp()">Comprar por WhatsApp</button>
+<button class="btn paypal" onclick="goPayPal()">Pagar con PayPal</button>
+</div>
+
+<!-- PRODUCTO 4 -->
 <div class="card">
 <h2>Diamantes Free Fire</h2>
 
@@ -167,13 +172,20 @@ h2{
 <div class="price">$19 - 2398 diamantes</div>
 <div class="price">$9 - 1160 diamantes</div>
 
-<a href="https://wa.link/1vvkkg">
-<button class="btn whatsapp">Verificar ID por WhatsApp</button>
-</a>
-
+<button class="btn whatsapp" onclick="goWhatsApp()">Verificar ID por WhatsApp</button>
 </div>
 
 </section>
+
+<script>
+function goWhatsApp(){
+    window.open("https://wa.link/1vvkkg");
+}
+
+function goPayPal(){
+    window.open("https://www.paypal.me/Herreraalcantara265");
+}
+</script>
 
 </body>
 </html>
