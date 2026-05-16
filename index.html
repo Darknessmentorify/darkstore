@@ -1,191 +1,2853 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DARK STORE</title>
+
+<title>DarkStore</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:Arial;
-    background:#050510;
-    color:white;
+background:#07111f;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
 }
 
-/* HEADER */
-header{
-    text-align:center;
-    padding:20px;
-    font-size:26px;
-    color:#c77dff;
-    text-shadow:0 0 20px #c77dff;
+/* TOPBAR */
+
+.topbar{
+width:100%;
+background:#0f1a2c;
+padding:16px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
 }
 
-/* HERO */
-.hero{
-    text-align:center;
-    padding:60px 20px;
+.top-left{
+display:flex;
+align-items:center;
+gap:14px;
 }
 
-.hero h1{
-    font-size:45px;
-    background:linear-gradient(90deg,#c77dff,#00bfff);
-    -webkit-background-clip:text;
-    color:transparent;
-    text-shadow:0 0 30px #c77dff;
+.menu-btn{
+font-size:34px;
+cursor:pointer;
+font-weight:bold;
 }
 
-/* PRODUCTOS */
-.products{
-    padding:20px;
-    display:grid;
-    gap:20px;
+.logo{
+font-size:24px;
+font-weight:700;
 }
 
-.card{
-    background:#0a0a1a;
-    border-radius:20px;
-    padding:20px;
-    box-shadow:0 0 30px rgba(0,255,255,0.2);
-    transition:0.3s;
+.logo span{
+color:#b7ff00;
 }
 
-.card:hover{
-    transform:scale(1.03);
-    box-shadow:0 0 40px #00bfff;
+.balance{
+background:#1a2740;
+padding:12px 18px;
+border-radius:16px;
+font-size:17px;
+font-weight:700;
 }
 
-/* PRECIOS */
-.price-box{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+/* SIDEBAR */
+
+.sidebar{
+position:fixed;
+top:0;
+left:-320px;
+width:290px;
+height:100%;
+background:#0f1a2c;
+z-index:9999;
+padding:22px;
+transition:0.3s;
+overflow-y:auto;
 }
 
-.price{
-    flex:1;
-    padding:10px;
-    text-align:center;
-    background:#111;
-    border-radius:10px;
-    box-shadow:0 0 10px #00bfff;
+.sidebar.active{
+left:0;
 }
 
-/* BOTONES */
-.btn{
-    width:100%;
-    padding:15px;
-    margin-top:10px;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.2s;
+.close-sidebar{
+font-size:34px;
+margin-bottom:20px;
+cursor:pointer;
 }
 
-/* WHATSAPP */
-.whatsapp{
-    background:linear-gradient(90deg,#00ff88,#00cc66);
-    box-shadow:0 0 25px #00ff88;
+.sidebar-title{
+font-size:32px;
+font-weight:700;
+margin-bottom:28px;
 }
 
-/* PAYPAL */
-.paypal{
-    background:linear-gradient(90deg,#0070ba,#00bfff);
-    box-shadow:0 0 25px #00bfff;
+.sidebar-item{
+display:flex;
+align-items:center;
+gap:14px;
+padding:20px;
+border-radius:20px;
+background:#111d31;
+margin-bottom:16px;
+font-size:21px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
 }
 
-/* EFECTO TOQUE */
-.btn:active{
-    transform:scale(0.9);
-    box-shadow:0 0 40px white;
+.sidebar-item:hover{
+background:#b7ff00;
+color:black;
 }
 
-h2{
-    color:#c77dff;
+/* CONTENEDOR */
+
+.container{
+max-width:600px;
+margin:auto;
+padding:18px;
 }
+
+/* APPS */
+
+.social-grid{
+background:#111d31;
+border-radius:24px;
+padding:16px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+margin-bottom:24px;
+}
+
+.social-box{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.social{
+width:86px;
+height:86px;
+border-radius:22px;
+overflow:hidden;
+background:#0d1525;
+border:3px solid transparent;
+cursor:pointer;
+transition:0.3s;
+}
+
+.social img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.social.active{
+border:3px solid #b7ff00;
+box-shadow:0 0 14px #b7ff00;
+}
+
+.social-name{
+margin-top:8px;
+font-size:14px;
+font-weight:500;
+}
+
+/* SEARCH */
+
+.search,
+input{
+width:100%;
+height:62px;
+border:none;
+border-radius:20px;
+background:#111d31;
+padding:0 18px;
+color:white;
+font-size:17px;
+outline:none;
+margin-bottom:18px;
+}
+
+/* TITLES */
+
+.title{
+font-size:22px;
+font-weight:700;
+margin-bottom:14px;
+}
+
+/* CATEGORIAS */
+
+.categories{
+display:flex;
+gap:12px;
+overflow-x:auto;
+padding-bottom:10px;
+margin-bottom:24px;
+}
+
+.categories::-webkit-scrollbar{
+display:none;
+}
+
+.category-btn{
+border:none;
+background:#1a2740;
+color:white;
+padding:14px 20px;
+border-radius:18px;
+font-size:16px;
+font-weight:600;
+white-space:nowrap;
+cursor:pointer;
+transition:0.3s;
+}
+
+.category-btn.active{
+background:#b7ff00;
+color:black;
+box-shadow:0 0 10px #b7ff00;
+}
+
+/* SERVICIO */
+
+.selected-service{
+background:#1a2740;
+border-radius:24px;
+padding:18px;
+margin-bottom:24px;
+border:2px solid rgba(183,255,0,0.3);
+}
+
+.service-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.service-id{
+font-size:34px;
+font-weight:700;
+color:#b7ff00;
+}
+
+.service-rate{
+font-size:18px;
+color:#d7d7d7;
+text-align:right;
+line-height:1.3;
+}
+
+.service-title{
+font-size:22px;
+font-weight:600;
+margin-top:14px;
+line-height:1.3;
+}
+
+.service-prices{
+margin-top:18px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.price-line{
+font-size:20px;
+font-weight:600;
+}
+
+.price-line span{
+color:#9dff00;
+margin-left:6px;
+}
+
+.service-tags{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:18px;
+}
+
+.tag{
+padding:10px 14px;
+border-radius:14px;
+font-size:15px;
+font-weight:600;
+}
+
+.pro{
+background:#ffc93b;
+color:black;
+}
+
+.refill{
+background:#3b2430;
+color:#ffb7c5;
+}
+
+.delivery{
+background:#243347;
+color:#bdd9ff;
+}
+
+/* TOTAL */
+
+.total-box{
+background:#111d31;
+border-radius:22px;
+padding:18px;
+margin-bottom:22px;
+border:2px solid rgba(183,255,0,0.2);
+}
+
+.total-title{
+font-size:18px;
+font-weight:600;
+margin-bottom:10px;
+color:#dcdcdc;
+}
+
+.total-price{
+font-size:34px;
+font-weight:700;
+color:#9dff00;
+}
+
+.total-info{
+margin-top:8px;
+font-size:16px;
+color:#9fa8b5;
+}
+
+/* BOTON */
+
+button.buy{
+width:100%;
+height:62px;
+border:none;
+border-radius:20px;
+background:#9dff00;
+color:black;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* RESULTADO */
+
+pre{
+background:#111d31;
+border-radius:20px;
+padding:16px;
+margin-top:20px;
+color:#9dff00;
+min-height:100px;
+white-space:pre-wrap;
+overflow:auto;
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:9999;
+}
+
+.modal-content{
+width:100%;
+max-width:500px;
+max-height:80vh;
+overflow-y:auto;
+background:#111d31;
+border-radius:24px;
+padding:18px;
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;
+}
+
+.modal-title{
+font-size:24px;
+font-weight:700;
+}
+
+.close-modal{
+background:#ff3b3b;
+width:42px;
+height:42px;
+border:none;
+border-radius:12px;
+color:white;
+font-size:22px;
+cursor:pointer;
+}
+
+.modal-services{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.modal-service{
+background:#1a2740;
+border:2px solid #9dff00;
+border-radius:20px;
+padding:16px;
+cursor:pointer;
+}
+
+/* HISTORIAL */
+
+.order-box{
+background:#1a2740;
+padding:18px;
+border-radius:20px;
+margin-bottom:14px;
+}
+
+.order-status{
+margin-top:10px;
+font-weight:700;
+}
+
+.pending{
+color:#ffd43b;
+}
+
+.completed{
+color:#8dff65;
+}
+
+.partial{
+color:#69c0ff;
+}
+
+.canceled{
+color:#ff7875;
+}
+
+@media(max-width:430px){
+
+.social{
+width:78px;
+height:78px;
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
 
-<header>DARK STORE</header>
+<!-- SIDEBAR -->
 
-<section class="hero">
-<h1>DARK STORE</h1>
-<p>Productos digitales premium para gamers</p>
-</section>
+<div class="sidebar" id="sidebar">
 
-<section class="products">
-
-<!-- PRODUCTO 1 -->
-<div class="card">
-<h2>Fluorite iPhone</h2>
-
-<div class="price-box">
-<div class="price">1 día $5</div>
-<div class="price">7 días $11</div>
-<div class="price">30 días $20</div>
+<div class="close-sidebar"
+onclick="closeSidebar()">
+✕
 </div>
 
-<button class="btn whatsapp" onclick="goWhatsApp()">Comprar por WhatsApp</button>
-<button class="btn paypal" onclick="goPayPal()">Pagar con PayPal</button>
+<div class="sidebar-title">
+DarkStore
 </div>
 
-<!-- PRODUCTO 2 -->
-<div class="card">
-<h2>Drip Client Android</h2>
-
-<div class="price-box">
-<div class="price">$1</div>
-<div class="price">$4</div>
-<div class="price">$8</div>
-<div class="price">$12</div>
+<div class="sidebar-item"
+onclick="showOrders()">
+📋 Historial de órdenes
+</div>
+  
+  <div class="sidebar-item"
+onclick="openDepositModal()">
+💳 Agregar saldo
 </div>
 
-<button class="btn whatsapp" onclick="goWhatsApp()">Comprar por WhatsApp</button>
-<button class="btn paypal" onclick="goPayPal()">Pagar con PayPal</button>
+<div class="sidebar-item">
+🎫 Tickets
 </div>
 
-<!-- PRODUCTO 3 -->
-<div class="card">
-<h2>BR Mod Android</h2>
-
-<div class="price-box">
-<div class="price">$1</div>
-<div class="price">$4</div>
-<div class="price">$8</div>
-<div class="price">$12</div>
+<div class="sidebar-item">
+♻️ Refills
 </div>
 
-<button class="btn whatsapp" onclick="goWhatsApp()">Comprar por WhatsApp</button>
-<button class="btn paypal" onclick="goPayPal()">Pagar con PayPal</button>
+  <div class="sidebar-item"
+onclick="openVIP()">
+💎 Zona VIP
+</div>
+  
+<div class="sidebar-item"
+onclick="openTermsModal()">
+📜 Términos
 </div>
 
-<!-- PRODUCTO 4 -->
-<div class="card">
-<h2>Diamantes Free Fire</h2>
-
-<div class="price">$45 - 6160 diamantes</div>
-<div class="price">$19 - 2398 diamantes</div>
-<div class="price">$9 - 1160 diamantes</div>
-
-<button class="btn whatsapp" onclick="goWhatsApp()">Verificar ID por WhatsApp</button>
 </div>
 
-</section>
+<!-- TOPBAR -->
 
-<script>
-function goWhatsApp(){
-    window.open("https://wa.link/1vvkkg");
+<div class="topbar">
+
+<div class="top-left">
+
+<div class="menu-btn"
+onclick="openSidebar()">
+☰
+</div>
+
+<div class="logo">
+<span>⬢</span> DarkStore
+</div>
+
+</div>
+
+<div class="balance" id="balance">
+$US 0
+</div>
+
+</div>
+
+<div class="container">
+
+<!-- APPS -->
+
+<div class="social-grid">
+
+<div class="social-box">
+<div class="social" onclick="loadPlatform('TikTok',this)">
+<img src="https://i.ibb.co/Q74v1nSx/b2f532b8bf6aab51b8854971e4ddb210.jpg">
+</div>
+<div class="social-name">TikTok</div>
+</div>
+
+<div class="social-box">
+<div class="social" onclick="loadPlatform('YouTube',this)">
+<img src="https://i.ibb.co/ymkR8Mcs/9ffc17d8234d69587aea04dff27e9abc.jpg">
+</div>
+<div class="social-name">YouTube</div>
+</div>
+
+<div class="social-box">
+<div class="social" onclick="loadPlatform('Kick',this)">
+<img src="https://i.ibb.co/mCKzRv3Y/a19db43a8afb052d85d257a47d00d964.jpg">
+</div>
+<div class="social-name">Kick</div>
+</div>
+
+<div class="social-box">
+<div class="social" onclick="loadPlatform('Telegram',this)">
+<img src="https://i.ibb.co/SzpSqK0/5713846d630704ce892f9c93944ba451.jpg">
+</div>
+<div class="social-name">Telegram</div>
+</div>
+
+<div class="social-box">
+<div class="social" onclick="loadPlatform('WhatsApp',this)">
+<img src="https://i.ibb.co/LDWcnsVW/ef55acaed134cf97d2a5f9f1e4815295.jpg">
+</div>
+<div class="social-name">WhatsApp</div>
+</div>
+
+<div class="social-box">
+<div class="social" onclick="loadPlatform('Facebook',this)">
+<img src="https://i.ibb.co/WvqdYpXt/3bcafdeb11954d6c870fec3e2f5caea8.jpg">
+</div>
+<div class="social-name">Facebook</div>
+</div>
+
+</div>
+
+<input
+class="search"
+id="search"
+placeholder="🔎 Buscar servicio..."
+>
+
+<div class="title">
+Categorías
+</div>
+
+<div class="categories" id="categories">
+
+<button class="category-btn">
+Selecciona una app arriba 👆
+</button>
+
+</div>
+
+<div class="title">
+Servicio
+</div>
+
+<div class="selected-service">
+
+<div class="service-header">
+
+<div class="service-id" id="selectedID">
+---
+</div>
+
+<div class="service-rate" id="selectedRate">
+$0 por 1000
+</div>
+
+</div>
+
+<div class="service-title" id="selectedName">
+Selecciona un servicio
+</div>
+
+<div class="service-prices">
+
+<div class="price-line">
+Precio:
+<span id="selectedPrice">
+$0/1k
+</span>
+</div>
+
+<div class="price-line">
+Pro:
+<span id="selectedPro">
+$0/1k
+</span>
+</div>
+
+</div>
+
+<div class="service-tags">
+
+<div class="tag pro">
+⚡ PRO
+</div>
+
+<div class="tag refill">
+✘ Sin Refill
+</div>
+
+<div class="tag delivery">
+📦 Entrega rápida
+</div>
+
+</div>
+
+</div>
+
+<input id="link" placeholder="🔗 Enter link">
+
+<input
+id="quantity"
+type="number"
+placeholder="📊 Cantidad"
+oninput="calculateTotal()"
+>
+
+<div class="total-box">
+
+<div class="total-title">
+💰 Total a pagar
+</div>
+
+<div class="total-price" id="totalPrice">
+$0
+</div>
+
+<div class="total-info" id="totalInfo">
+0 unidades
+</div>
+
+</div>
+
+<button class="buy" onclick="buyService()">
+Enviar Orden
+</button>
+
+<pre id="result">
+DarkStore listo 🚀
+</pre>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="serviceModal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<div class="modal-title" id="modalTitle">
+Servicios
+</div>
+
+<button class="close-modal"
+onclick="closeModal()">
+×
+</button>
+
+</div>
+
+<div class="modal-services"
+id="modalServices">
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+  
+  /* FIREBASE */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getAuth,
+
+signInWithEmailAndPassword,
+
+createUserWithEmailAndPassword,
+
+onAuthStateChanged,
+
+signOut
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+
+getFirestore,
+
+doc,
+
+setDoc,
+
+getDoc,
+
+updateDoc
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* CONFIG */
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyC2D0ua7iI6peDx8RlmxKi4MfpD2tvOftw",
+
+authDomain: "darkstore-2c84c.firebaseapp.com",
+
+projectId: "darkstore-2c84c",
+
+storageBucket: "darkstore-2c84c.firebasestorage.app",
+
+messagingSenderId: "506326425780",
+
+appId: "1:506326425780:web:745ecca6a6e5ba90a437e1"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+/* ADMIN */
+
+const ADMIN_EMAIL =
+"guillermoherrera435@gmail.com";
+
+const API_URL =
+"https://lytzthebest.com/api/v2";
+
+const API_KEY =
+"f04cc9045355950e290a617cb8c5019b";
+
+  const VIP_API_URL =
+"https://lytzthebest.com/api/v2";
+
+const VIP_API_KEY =
+"a103ca7bb4c35f60a97a89104b655c8b";
+
+let vipMode = false;
+  
+  const API2_URL =
+"https://lytzthebest.com/api/v2";
+
+const API2_KEY =
+"a103ca7bb4c35f60a97a89104b655c8b";
+  
+let allServices = [];
+let currentPlatform = "";
+let selectedService = "";
+/* SALDO */
+
+function openDepositModal(){
+
+closeSidebar();
+
+document.getElementById("depositModal")
+.style.display = "flex";
+
 }
 
-function goPayPal(){
-    window.open("https://www.paypal.me/Herreraalcantara265");
+function closeDepositModal(){
+
+document.getElementById("depositModal")
+.style.display = "none";
+
 }
+let selectedPayment = "paypal";
+
+function selectPayment(method){
+
+selectedPayment = method;
+  
+  
+
+/* RESET BORDES */
+
+document.getElementById("paypalBtn")
+.style.border = "4px solid transparent";
+
+document.getElementById("binanceBtn")
+.style.border = "4px solid transparent";
+
+/* PAYPAL */
+
+if(method == "paypal"){
+
+document.getElementById("paypalBtn")
+.style.border = "4px solid #b7ff00";
+
+document.getElementById("paymentInfo")
+.innerHTML = `
+
+💳 PayPal:<br><br>
+
+paypal.me/DARKSTORE504
+
+`;
+
+}
+
+/* BINANCE */
+
+else{
+
+document.getElementById("binanceBtn")
+.style.border = "4px solid #b7ff00";
+
+document.getElementById("paymentInfo")
+.innerHTML = `
+
+<div style="text-align:center;">
+
+<img
+src="https://i.ibb.co/gFfwZdBn/share-2026-05-13-23-26-55-832-jpeg-2026-05-13-23-26-55.jpg"
+style="
+width:100%;
+max-width:260px;
+aspect-ratio:1/1;
+object-fit:cover;
+border-radius:24px;
+border:4px solid #b7ff00;
+box-shadow:0 0 20px rgba(183,255,0,0.5);
+margin-bottom:18px;
+background:#000;
+"
+/>
+
+<div style="
+font-size:18px;
+font-weight:700;
+margin-bottom:10px;
+">
+
+Binance Pay
+
+</div>
+
+<div style="
+font-size:16px;
+color:#d7d7d7;
+">
+
+ID Binance:<br>
+951696743
+
+</div>
+
+</div>
+
+`;
+
+}
+
+}
+function goPaypal(){
+
+let amount =
+parseFloat(
+document.getElementById("depositAmount").value
+);
+
+if(!amount || amount < 10){
+
+alert("El mínimo es $10 USD");
+return;
+
+}
+
+/* COMISION */
+
+let total =
+(amount * 1.05) + 0.50;
+
+total = total.toFixed(2);
+
+/* PAYPAL */
+
+window.open(
+"https://www.paypal.me/DARKSTORE504/" + total,
+"_blank"
+);
+
+}
+function sendProof(){
+
+let amount =
+document.getElementById("depositAmount").value || 0;
+
+let message =
+`Hola, este es mi comprobante de recarga ($${amount} USD) 💸`;
+
+let url =
+`https://wa.me/50495784338?text=${encodeURIComponent(message)}`;
+
+window.open(url,"_blank");
+
+}
+/* MENU */
+
+function openSidebar(){
+document.getElementById("sidebar")
+.classList.add("active");
+}
+
+function closeSidebar(){
+document.getElementById("sidebar")
+.classList.remove("active");
+}
+
+/* BALANCE */
+
+async function loadBalance(){
+
+try{
+
+let response = await fetch(API_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:new URLSearchParams({
+key:API_KEY,
+action:"balance"
+})
+});
+
+let data = await response.json();
+
+document.getElementById("balance")
+.innerText =
+"$US " + parseFloat(data.balance).toFixed(2);
+
+}catch{}
+
+}
+
+/* SERVICIOS */
+
+async function loadServices(){
+
+let api =
+vipMode
+? VIP_API_URL
+: API_URL;
+
+let key =
+vipMode
+? VIP_API_KEY
+: API_KEY;
+
+let response = await fetch(api,{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:new URLSearchParams({
+key:key,
+action:"services"
+})
+});
+
+let data = await response.json();
+
+/* DUPLICAR PRECIO VIP */
+
+if(vipMode){
+
+data.forEach(service=>{
+
+service.rate =
+(parseFloat(service.rate) * 2)
+.toFixed(4);
+
+service.name =
+"💎 " + service.name;
+
+});
+
+}
+
+allServices = data;
+
+}
+
+/* APP */
+
+function loadPlatform(platform,element){
+
+currentPlatform = platform;
+
+/* ACTIVAR LOGO */
+
+document.querySelectorAll(".social")
+.forEach(el=>el.classList.remove("active"));
+
+element.classList.add("active");
+
+/* FILTRAR SERVICIOS */
+
+let services = allServices.filter(service =>
+
+service.name &&
+service.name.toLowerCase()
+.includes(platform.toLowerCase())
+
+);
+
+/* DETECTAR CATEGORIAS */
+
+let followers = false;
+let likes = false;
+let views = false;
+
+services.forEach(service=>{
+
+let name = service.name.toLowerCase();
+
+if(
+name.includes("followers") ||
+name.includes("seguidores")
+){
+followers = true;
+}
+
+if(name.includes("likes")){
+likes = true;
+}
+
+if(
+name.includes("views") ||
+name.includes("vistas")
+){
+views = true;
+}
+
+});
+
+/* CREAR HTML */
+
+let html = "";
+
+/* SEGUIDORES */
+
+if(followers){
+
+html += `
+
+<button
+class="category-btn"
+onclick="selectCategory('Seguidores',this)"
+>
+
+👥 Seguidores
+
+</button>
+
+`;
+
+}
+
+/* LIKES */
+
+if(likes){
+
+html += `
+
+<button
+class="category-btn"
+onclick="selectCategory('Likes',this)"
+>
+
+❤️ Likes
+
+</button>
+
+`;
+
+}
+
+/* VIEWS */
+
+if(views){
+
+html += `
+
+<button
+class="category-btn"
+onclick="selectCategory('Views',this)"
+>
+
+👀 Views
+
+</button>
+
+`;
+
+}
+
+/* MOSTRAR */
+
+document.getElementById("categories")
+.innerHTML = html;
+
+}
+
+/* CATEGORIAS */
+
+function renderCategories(categories){
+
+let box =
+document.getElementById("categories");
+
+box.innerHTML = "";
+
+categories.forEach(category=>{
+
+box.innerHTML += `
+
+<button
+class="category-btn"
+onclick="selectCategory('${category}',this)"
+>
+
+${category}
+
+</button>
+
+`;
+
+});
+
+}
+
+/* ABRIR MODAL */
+
+function selectCategory(category,button){
+
+document.querySelectorAll(".category-btn")
+.forEach(el=>el.classList.remove("active"));
+
+button.classList.add("active");
+
+let services = allServices.filter(service=>{
+
+let name =
+service.name.toLowerCase();
+
+let matchPlatform =
+name.includes(currentPlatform.toLowerCase());
+
+let matchCategory = false;
+
+if(category == "Seguidores")
+matchCategory =
+name.includes("followers") ||
+name.includes("seguidores");
+
+if(category == "Likes")
+matchCategory =
+name.includes("likes");
+
+if(category == "Views")
+matchCategory =
+name.includes("views") ||
+name.includes("vistas");
+
+return matchPlatform && matchCategory;
+
+});
+
+openModal(category,services);
+
+}
+
+/* MODAL */
+
+function openModal(title,services){
+
+let modal =
+document.getElementById("serviceModal");
+
+let modalTitle =
+document.getElementById("modalTitle");
+
+let modalServices =
+document.getElementById("modalServices");
+
+modalTitle.innerText = title;
+
+modalServices.innerHTML = "";
+
+services.forEach(service=>{
+
+let price =
+(parseFloat(service.rate) * 2)
+.toFixed(2);
+
+modalServices.innerHTML += `
+
+<div class="modal-service"
+onclick="selectService('${service.service}')">
+
+<div class="service-header">
+
+<div class="service-id">
+${service.service}
+</div>
+
+<div class="service-rate">
+$${price} por 1000
+</div>
+
+</div>
+
+<div class="service-title">
+${service.name}
+</div>
+
+</div>
+
+`;
+
+});
+
+modal.style.display = "flex";
+
+}
+
+function closeModal(){
+
+document.getElementById("serviceModal")
+.style.display = "none";
+
+}
+
+/* SERVICIO */
+
+function selectService(id){
+
+selectedService = id;
+
+let service =
+allServices.find(s => s.service == id);
+
+if(service){
+
+let price =
+(parseFloat(service.rate) * 2)
+.toFixed(2);
+
+let pro =
+(parseFloat(price) * 0.7)
+.toFixed(2);
+
+document.getElementById("selectedID")
+.innerText = service.service;
+
+document.getElementById("selectedRate")
+.innerText =
+"$" + price + " por 1000";
+
+document.getElementById("selectedName")
+.innerText = service.name;
+
+document.getElementById("selectedPrice")
+.innerText =
+"$" + price + "/1k";
+
+document.getElementById("selectedPro")
+.innerText =
+"$" + pro + "/1k";
+
+calculateTotal();
+
+}
+
+closeModal();
+
+document.getElementById("result")
+.innerText =
+"✅ Servicio seleccionado: " + id;
+
+}
+
+/* TOTAL */
+
+function calculateTotal(){
+
+let quantity =
+parseInt(
+document.getElementById("quantity").value
+) || 0;
+
+if(!selectedService){
+
+document.getElementById("totalPrice")
+.innerText = "$0";
+
+document.getElementById("totalInfo")
+.innerText = "Selecciona un servicio";
+
+return;
+
+}
+
+let service =
+allServices.find(s =>
+s.service == selectedService
+);
+
+if(!service) return;
+
+let pricePer1000 =
+parseFloat(service.rate) * 2;
+
+let total =
+(quantity / 1000) * pricePer1000;
+
+document.getElementById("totalPrice")
+.innerText =
+"$" + total.toFixed(2);
+
+document.getElementById("totalInfo")
+.innerText =
+quantity + " unidades";
+
+}
+
+/* COMPRAR */
+
+async function buyService(){
+
+let link =
+document.getElementById("link").value;
+
+let quantity =
+document.getElementById("quantity").value;
+
+if(!selectedService){
+
+alert("Selecciona un servicio");
+return;
+
+}
+
+if(!link || !quantity){
+
+alert("Completa todos los campos");
+return;
+
+}
+
+let response = await fetch(API_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:new URLSearchParams({
+key:API_KEY,
+action:"add",
+service:selectedService,
+link:link,
+quantity:quantity
+})
+});
+
+let result =
+await response.json();
+
+/* GUARDAR ORDEN */
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.push({
+
+id: result.order,
+
+service: document.getElementById("selectedName").innerText
+
+});
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+/* GUARDAR ORDEN */
+
+if(result.order){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.push(result.order);
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+}
+
+/* SI HAY ERROR */
+
+if(result.error){
+
+document.getElementById("result")
+.innerText = JSON.stringify(result);
+
+return;
+
+}
+
+/* LIMPIAR CAMPOS */
+
+document.getElementById("link").value = "";
+document.getElementById("quantity").value = "";
+
+/* RESET TOTAL */
+
+document.getElementById("totalPrice")
+.innerText = "$0";
+
+document.getElementById("totalInfo")
+.innerText = "0 unidades";
+
+/* MENSAJE */
+
+document.getElementById("result")
+.innerHTML = `
+
+<div style="
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px 20px;
+font-size:30px;
+font-weight:700;
+color:#9dff00;
+">
+
+✅ Pedido enviado
+
+<div style="
+font-size:17px;
+margin-top:12px;
+color:#d7d7d7;
+font-weight:500;
+">
+
+Tu orden fue enviada correctamente 🚀
+
+</div>
+
+</div>
+
+`;
+
+loadBalance();
+
+}
+
+/* HISTORIAL */
+
+/* HISTORIAL */
+
+async function showOrders(){
+
+closeSidebar();
+
+document.getElementById("ordersModal")
+.style.display = "flex";
+
+let container =
+document.getElementById("ordersContainer");
+
+container.innerHTML = `
+<div style="
+text-align:center;
+padding:30px;
+color:#9fa8b5;
+">
+Cargando órdenes...
+</div>
+`;
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+if(orders.length == 0){
+
+container.innerHTML = `
+<div style="
+text-align:center;
+padding:30px;
+color:#9fa8b5;
+">
+No hay órdenes
+</div>
+`;
+
+return;
+
+}
+
+container.innerHTML = "";
+
+for(let savedOrder of orders.reverse()){
+
+let id = savedOrder.id;
+
+try{
+
+let response = await fetch(API_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:new URLSearchParams({
+key:API_KEY,
+action:"status",
+order:id
+})
+});
+
+let order = await response.json();
+
+let color = "#ffd43b";
+
+if(order.status == "Completed"){
+color = "#8dff65";
+}
+
+if(order.status == "Processing"){
+color = "#69c0ff";
+}
+
+if(order.status == "Canceled"){
+color = "#ff7875";
+}
+
+container.innerHTML += `
+
+<div class="order-box">
+
+<div style="
+font-size:18px;
+font-weight:700;
+margin-bottom:10px;
+">
+
+🆔 Orden #${id}
+  <div style="
+margin-top:10px;
+margin-bottom:12px;
+font-size:16px;
+color:#b7ff00;
+font-weight:600;
+">
+
+${savedOrder.service}
+
+</div>
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+📦 ${order.start_count || 0}
+
+</div>
+
+<div style="margin-bottom:8px;">
+
+👀 Restante: ${order.remains}
+
+</div>
+
+<div style="
+font-weight:700;
+font-size:17px;
+color:${color};
+">
+
+${order.status}
+
+</div>
+
+</div>
+
+`;
+
+}catch{}
+
+}
+
+}
+
+function closeOrdersModal(){
+
+document.getElementById("ordersModal")
+.style.display = "none";
+
+}
+function openVIP(){
+
+closeSidebar();
+
+document.getElementById("vipModal")
+.style.display = "flex";
+
+loadVIPServices();
+
+}
+/* START */
+function openTermsModal(){
+
+closeSidebar();
+
+document.getElementById("termsModal")
+.style.display = "flex";
+
+}
+
+function closeTermsModal(){
+
+document.getElementById("termsModal")
+.style.display = "none";
+
+}
+ let vipServices = [];
+
+/* CARGAR SERVICIOS VIP */
+
+async function loadVIPServices(){
+
+try{
+
+let response = await fetch(VIP_API_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:new URLSearchParams({
+key:VIP_API_KEY,
+action:"services"
+})
+});
+
+vipServices = await response.json();
+
+/* DUPLICAR PRECIO */
+
+vipServices.forEach(service=>{
+
+service.finalRate =
+(parseFloat(service.rate) * 2).toFixed(2);
+
+});
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* ABRIR VIP */
+
+function openVIP(){
+
+closeSidebar();
+
+document.getElementById("vipModal")
+.style.display = "flex";
+
+loadVIPServices();
+
+}
+
+/* CERRAR VIP */
+
+function closeVIPModal(){
+
+document.getElementById("vipModal")
+.style.display = "none";
+
+}
+
+/* MOSTRAR CATEGORIAS */
+
+function showVIPCategories(platform){
+
+closeVIPModal();
+
+let services = vipServices.filter(service=>{
+
+return service.name &&
+service.name.toLowerCase()
+.includes(platform.toLowerCase());
+
+});
+
+let categories = [];
+
+services.forEach(service=>{
+
+let name = service.name.toLowerCase();
+
+if(name.includes("followers") || name.includes("seguidores")){
+
+categories.push("Seguidores");
+
+}
+
+if(name.includes("likes")){
+
+categories.push("Likes");
+
+}
+
+if(name.includes("views") || name.includes("vistas")){
+
+categories.push("Views");
+
+}
+
+});
+
+categories = [...new Set(categories)];
+
+let html = `
+<div style="
+font-size:30px;
+font-weight:700;
+margin-bottom:20px;
+">
+💎 ${platform} VIP
+</div>
+`;
+
+categories.forEach(category=>{
+
+html += `
+
+<button
+onclick="showVIPServices('${platform}','${category}')"
+style="
+width:100%;
+height:65px;
+border:none;
+border-radius:18px;
+background:#1a2740;
+color:white;
+font-size:20px;
+font-weight:700;
+margin-bottom:14px;
+cursor:pointer;
+">
+
+${category}
+
+</button>
+
+`;
+
+});
+
+document.getElementById("result")
+.innerHTML = html;
+
+}
+
+/* MOSTRAR SERVICIOS */
+
+function showVIPServices(platform,category){
+
+let filtered = vipServices.filter(service=>{
+
+let name = service.name.toLowerCase();
+
+let matchPlatform =
+name.includes(platform.toLowerCase());
+
+let matchCategory = false;
+
+if(category == "Seguidores"){
+
+matchCategory =
+name.includes("followers") ||
+name.includes("seguidores");
+
+}
+
+if(category == "Likes"){
+
+matchCategory =
+name.includes("likes");
+
+}
+
+if(category == "Views"){
+
+matchCategory =
+name.includes("views") ||
+name.includes("vistas");
+
+}
+
+return matchPlatform && matchCategory;
+
+});
+
+/* ORDENAR */
+
+filtered.sort((a,b)=>
+parseFloat(a.rate) - parseFloat(b.rate)
+);
+
+/* TOP 10 */
+
+filtered = filtered.slice(0,10);
+
+let html = `
+<div style="
+font-size:28px;
+font-weight:700;
+margin-bottom:20px;
+">
+🔥 ${platform} ${category}
+</div>
+`;
+
+filtered.forEach(service=>{
+
+html += `
+
+<div style="
+background:#1a2740;
+padding:18px;
+border-radius:20px;
+margin-bottom:16px;
+border:2px solid rgba(183,255,0,0.3);
+">
+
+<div style="
+font-size:24px;
+font-weight:700;
+color:#b7ff00;
+margin-bottom:10px;
+">
+
+#${service.service}
+
+</div>
+
+<div style="
+font-size:17px;
+font-weight:600;
+margin-bottom:12px;
+line-height:1.5;
+">
+
+${service.name}
+
+</div>
+
+<div style="
+font-size:22px;
+font-weight:700;
+color:#9dff00;
+">
+
+💰 $${service.finalRate} /1000
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("result")
+.innerHTML = html;
+
+}
+window.onload = async()=>{
+
+await loadBalance();
+
+await loadServices();
+
+};
+
+  /* LOGIN STATUS */
+
+function setLoginStatus(text,color="#9fa8b5"){
+
+document.getElementById("loginStatus")
+.innerText = text;
+
+document.getElementById("loginStatus")
+.style.color = color;
+
+}
+
+/* REGISTER */
+
+window.register = async function(){
+
+let email =
+document.getElementById("email").value;
+
+let password =
+document.getElementById("password").value;
+
+if(!email || !password){
+
+setLoginStatus(
+"Completa todos los campos",
+"#ff7875"
+);
+
+return;
+
+}
+
+try{
+
+let userCredential =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+/* CREAR USUARIO */
+
+await setDoc(
+doc(db,"users",userCredential.user.uid),
+{
+
+email: email,
+
+saldo: 0,
+
+admin: false
+
+}
+);
+
+setLoginStatus(
+"Cuenta creada correctamente ✅",
+"#8dff65"
+);
+
+}catch(err){
+
+setLoginStatus(
+err.message,
+"#ff7875"
+);
+
+}
+
+}
+
+/* LOGIN */
+
+window.login = async function(){
+
+let email =
+document.getElementById("email").value;
+
+let password =
+document.getElementById("password").value;
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+}catch(err){
+
+setLoginStatus(
+err.message,
+"#ff7875"
+);
+
+}
+
+}
+
+/* SESSION */
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(user){
+
+document.getElementById("loginModal")
+.style.display = "none";
+
+/* CARGAR USUARIO */
+
+let userRef =
+doc(db,"users",user.uid);
+
+let userSnap =
+await getDoc(userRef);
+
+if(userSnap.exists()){
+
+let data =
+userSnap.data();
+
+document.getElementById("balance")
+.innerText =
+"$US " + data.saldo.toFixed(2);
+
+/* ADMIN */
+
+if(user.email == ADMIN_EMAIL){
+
+createAdminPanel();
+
+}
+
+}
+
+}else{
+
+document.getElementById("loginModal")
+.style.display = "flex";
+
+}
+
+});
+
+/* PANEL ADMIN */
+
+function createAdminPanel(){
+
+let panel =
+document.createElement("div");
+
+panel.innerHTML = `
+
+<div style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#111d31;
+padding:20px;
+border-radius:20px;
+z-index:99999;
+width:300px;
+border:2px solid #b7ff00;
+">
+
+<div style="
+font-size:20px;
+font-weight:700;
+margin-bottom:14px;
+">
+
+👑 Admin Panel
+
+</div>
+
+<input
+id="adminEmail"
+placeholder="Correo usuario"
+style="
+width:100%;
+height:50px;
+margin-bottom:10px;
+"
+>
+
+<input
+id="adminSaldo"
+type="number"
+placeholder="Saldo a agregar"
+style="
+width:100%;
+height:50px;
+margin-bottom:14px;
+"
+>
+
+<button
+onclick="addBalance()"
+style="
+width:100%;
+height:55px;
+border:none;
+border-radius:16px;
+background:#b7ff00;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+">
+
+Agregar saldo
+
+</button>
+
+</div>
+
+`;
+
+document.body.appendChild(panel);
+
+}
+
+/* AGREGAR SALDO */
+
+window.addBalance = async function(){
+
+let email =
+document.getElementById("adminEmail").value;
+
+let saldo =
+parseFloat(
+document.getElementById("adminSaldo").value
+);
+
+if(!email || !saldo){
+
+alert("Completa todo");
+return;
+
+}
+
+try{
+
+const usersRef =
+await fetch(
+"https://firestore.googleapis.com/v1/projects/darkstore-2c84c/databases/(default)/documents/users"
+);
+
+alert(
+"Busca el UID manualmente en Firebase y actualiza el saldo."
+);
+
+}catch(err){
+
+alert(err);
+
+}
+
+}
+  
 </script>
+<!-- MODAL AGREGAR SALDO -->
 
+<div class="modal" id="depositModal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<div class="modal-title">
+Agregar saldo
+</div>
+
+<button class="close-modal"
+onclick="closeDepositModal()">
+×
+</button>
+
+</div>
+
+<div style="margin-top:10px;">
+
+<div style="
+font-size:18px;
+margin-bottom:12px;
+font-weight:600;
+">
+Monto a agregar (USD)
+</div>
+
+<input
+id="depositAmount"
+type="number"
+placeholder="$10 mínimo"
+style="
+width:100%;
+height:60px;
+border:none;
+border-radius:18px;
+padding:18px;
+background:#1a2740;
+color:white;
+font-size:18px;
+margin-bottom:20px;
+"
+>
+
+<div style="
+font-size:18px;
+margin-bottom:14px;
+font-weight:600;
+">
+Método de pago
+</div>
+
+<div style="
+display:flex;
+gap:18px;
+justify-content:center;
+margin-bottom:25px;
+">
+
+<!-- PAYPAL -->
+
+<div
+onclick="selectPayment('paypal')"
+id="paypalBtn"
+style="
+width:90px;
+height:90px;
+background:white;
+border-radius:22px;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+border:4px solid #b7ff00;
+">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+style="width:65px;"
+>
+
+</div>
+
+<!-- BINANCE -->
+
+<!-- BINANCE -->
+
+<div
+onclick="selectPayment('binance')"
+id="binanceBtn"
+style="
+width:90px;
+height:90px;
+background:#111;
+border-radius:22px;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+border:4px solid transparent;
+overflow:hidden;
+">
+
+<img
+src="https://i.ibb.co/wZXJpWjD/b7e1b954b06f52ab4ed9c28731585861.jpg"
+style="
+width:100%;
+height:100%;
+object-fit:cover;
+"
+>
+
+</div>
+
+</div>
+
+<div
+id="paymentInfo"
+style="
+background:#1a2740;
+padding:18px;
+border-radius:18px;
+margin-bottom:20px;
+font-size:17px;
+line-height:1.7;
+"
+>
+
+💳 PayPal:
+paypal.me/DARKSTORE504
+
+</div>
+
+<div style="
+background:#111d31;
+padding:18px;
+border-radius:18px;
+margin-bottom:20px;
+font-size:15px;
+line-height:1.7;
+color:#d7d7d7;
+">
+
+⚠️ Todos los pagos son finales.
+
+❌ No se aceptan reembolsos ni disputas.
+
+✅ Al continuar aceptas nuestros términos.
+
+</div>
+
+<button
+onclick="goPaypal()"
+style="
+width:100%;
+height:62px;
+border:none;
+border-radius:20px;
+background:#9dff00;
+color:black;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+">
+
+Continuar al pago
+  
+<button
+onclick="sendProof()"
+style="
+width:100%;
+height:58px;
+border:none;
+border-radius:18px;
+background:#1a2740;
+color:white;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+margin-top:14px;
+border:2px solid #9dff00;
+">
+
+📤 Enviar comprobante
+
+</button>
+  
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+  <!-- MODAL HISTORIAL ÓRDENES -->
+
+<div class="modal" id="ordersModal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<div class="modal-title">
+📋 Historial de órdenes
+</div>
+
+<button
+class="close-modal"
+onclick="closeOrdersModal()">
+×
+</button>
+
+</div>
+<!-- MODAL TERMINOS -->
+
+<div class="modal" id="termsModal">
+
+<div class="modal-content"
+style="
+max-width:700px;
+height:85vh;
+overflow-y:auto;
+background:#07111f;
+">
+
+<div class="modal-header">
+
+<div class="modal-title"
+style="
+font-size:38px;
+font-weight:700;
+line-height:1.2;
+">
+📜 Términos y Condiciones
+</div>
+
+<button
+class="close-modal"
+onclick="closeTermsModal()">
+×
+</button>
+
+</div>
+
+<div style="
+color:#d7d7d7;
+font-size:19px;
+line-height:1.9;
+">
+
+<h2 style="
+font-size:34px;
+color:white;
+margin-bottom:20px;
+">
+1. Nuestra sinceridad y compromiso
+</h2>
+
+<p>
+Trabajamos por ofrecer servicios de alta calidad.
+Sin embargo, las redes sociales realizan cambios constantes y no podemos garantizar permanencia eterna.
+</p>
+
+<br>
+
+<p>
+Al utilizar DarkStore aceptas que seguidores, likes o vistas pueden bajar debido a actualizaciones de las plataformas.
+</p>
+
+<br><br>
+
+<h2 style="
+font-size:34px;
+color:white;
+margin-bottom:20px;
+">
+2. Reembolsos y cancelaciones
+</h2>
+
+<p>
+No ofrecemos reembolsos ni cancelaciones una vez enviada la orden.
+</p>
+
+<br>
+
+<p>
+Los servicios en vivo o automáticos no tienen devolución.
+</p>
+
+<br><br>
+
+<h2 style="
+font-size:34px;
+color:white;
+margin-bottom:20px;
+">
+3. Responsabilidad del usuario
+</h2>
+
+<p>
+Debes colocar enlaces correctos y mantener tus perfiles públicos mientras llega el servicio.
+</p>
+
+<br>
+
+<p>
+Si el link es incorrecto o la cuenta cambia a privada, la orden puede fallar sin reembolso.
+</p>
+
+<br><br>
+
+<h2 style="
+font-size:34px;
+color:white;
+margin-bottom:20px;
+">
+4. Sistema Refill
+</h2>
+
+<p>
+El refill es un apoyo adicional y no garantiza recuperación completa en todos los casos.
+</p>
+
+<br><br>
+
+<h2 style="
+font-size:34px;
+color:white;
+margin-bottom:20px;
+">
+5. Respeto al soporte
+</h2>
+
+<p>
+Insultos, amenazas o faltas de respeto al soporte pueden causar suspensión permanente.
+</p>
+
+<br><br>
+
+<h2 style="
+font-size:34px;
+color:white;
+margin-bottom:20px;
+">
+6. Aceptación
+</h2>
+
+<p>
+Al usar DarkStore aceptas automáticamente todos estos términos.
+</p>
+
+<br><br>
+
+</div>
+
+</div>
+
+</div>
+<div
+id="ordersContainer"
+style="
+margin-top:10px;
+">
+
+</div>
+
+</div>
+
+</div>
+  <!-- MODAL VIP -->
+
+<div class="modal" id="vipModal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<div class="modal-title">
+💎 Zona VIP
+</div>
+
+<button
+class="close-modal"
+onclick="closeVIPModal()">
+×
+</button>
+
+</div>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+">
+
+<!-- TikTok -->
+
+<div class="social-box">
+
+<div class="social"
+onclick="showVIPCategories('TikTok')">
+
+<img src="https://i.ibb.co/Q74v1nSx/b2f532b8bf6aab51b8854971e4ddb210.jpg">
+
+</div>
+
+<div class="social-name">
+TikTok VIP
+</div>
+
+</div>
+
+<!-- YouTube -->
+
+<div class="social-box">
+
+<div class="social"
+onclick="showVIPCategories('YouTube')">
+
+<img src="https://i.ibb.co/ymkR8Mcs/9ffc17d8234d69587aea04dff27e9abc.jpg">
+
+</div>
+
+<div class="social-name">
+YouTube VIP
+</div>
+
+</div>
+
+<!-- Facebook -->
+
+<div class="social-box">
+
+<div class="social"
+onclick="showVIPCategories('Facebook')">
+
+<img src="https://i.ibb.co/WvqdYpXt/3bcafdeb11954d6c870fec3e2f5caea8.jpg">
+
+</div>
+
+<div class="social-name">
+Facebook VIP
+</div>
+
+</div>
+
+<!-- WhatsApp -->
+
+<div class="social-box">
+
+<div class="social"
+onclick="showVIPCategories('WhatsApp')">
+
+<img src="https://i.ibb.co/LDWcnsVW/ef55acaed134cf97d2a5f9f1e4815295.jpg">
+
+</div>
+
+<div class="social-name">
+WhatsApp VIP
+</div>
+
+</div>
+
+<!-- Telegram -->
+
+<div class="social-box">
+
+<div class="social"
+onclick="showVIPCategories('Telegram')">
+
+<img src="https://i.ibb.co/SzpSqK0/5713846d630704ce892f9c93944ba451.jpg">
+
+</div>
+
+<div class="social-name">
+Telegram VIP
+</div>
+
+</div>
+
+<!-- Kick -->
+
+<div class="social-box">
+
+<div class="social"
+onclick="showVIPCategories('Kick')">
+
+<img src="https://i.ibb.co/mCKzRv3Y/a19db43a8afb052d85d257a47d00d964.jpg">
+
+</div>
+
+<div class="social-name">
+Kick VIP
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</div>
+  <!-- LOGIN -->
+
+<div id="loginModal"
+style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#07111f;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999999;
+padding:20px;
+">
+
+<div style="
+width:100%;
+max-width:420px;
+background:#111d31;
+padding:30px;
+border-radius:30px;
+">
+
+<div style="
+font-size:35px;
+font-weight:700;
+margin-bottom:10px;
+text-align:center;
+">
+
+<span style="color:#b7ff00;">⬢</span>
+DarkStore
+
+</div>
+
+<div style="
+text-align:center;
+color:#9fa8b5;
+margin-bottom:25px;
+">
+
+Inicia sesión
+
+</div>
+
+<input
+id="email"
+type="email"
+placeholder="Correo"
+>
+
+<input
+id="password"
+type="password"
+placeholder="Contraseña"
+>
+
+<button
+onclick="login()"
+style="
+width:100%;
+height:60px;
+border:none;
+border-radius:18px;
+background:#b7ff00;
+font-size:18px;
+font-weight:700;
+margin-bottom:12px;
+cursor:pointer;
+">
+
+Entrar
+
+</button>
+
+<button
+onclick="register()"
+style="
+width:100%;
+height:60px;
+border:none;
+border-radius:18px;
+background:#1a2740;
+color:white;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+">
+
+Crear cuenta
+
+</button>
+
+<div
+id="loginStatus"
+style="
+margin-top:16px;
+text-align:center;
+color:#9fa8b5;
+">
+Listo 🚀
+</div>
+
+</div>
+
+</div>
 </body>
-</html>
+    </html>
